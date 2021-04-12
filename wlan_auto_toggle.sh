@@ -1,9 +1,9 @@
 #!/bin/bash
 
 #Отключаем соединение от wifi, при условии, что BSSID не соответствует разрешенному.
-#BSSID_CONNECT вводить только в верхнем регистре BSSID_CONNECT=('E4:8D:8C:BF:CB:EB' 'E4:8D:8C:BF:CB:F1' 'D8:EB:97:10:8A:86')
+#BSSID_CONNECT вводить только в верхнем регистре BSSID_CONNECT=('11:AA:11:AA:11:AA' '11:AA:11:AA:11:AA' '11:AA:11:AA:11:AA')
 
-BSSID_CONNECT=('12:CE:87:FB:94:08')
+BSSID_CONNECT=('11:AA:11:AA:11:AA')
 
 interface=$1
 status=$2
