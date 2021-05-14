@@ -14,11 +14,16 @@
 sudo chown root:root /etc/NetworkManager/dispatcher.d/wlan_auto_toggle.sh
 sudo chmod 755 /etc/NetworkManager/dispatcher.d/wlan_auto_toggle.sh
 ```
-2. В скрипте `/etc/NetworkManager/dispatcher.d/wlan_auto_toggle.sh` определить параметр `BSSID_CONNECT` - это BSSID Wi-Fi сетей, к которым можно подключаться.  Оформление `BSSID_CONNECT`:  
+2. В скрипте `/etc/NetworkManager/dispatcher.d/wlan_auto_toggle.sh` определить обязательные параметры: 
+  * `BSSID_CONNECT` - это BSSID Wi-Fi сетей, к которым можно подключаться;
+  * `SSID_CONNECT` - это SSID Wi-Fi сетей, к которым можно подключаться.  
+Оформление `BSSID_CONNECT`:  
   * только CapsLock; 
-  * BSSID указываются через пробел.
+  * BSSID указываются через пробел;
+  * SSID не должен содержать пробелы и другие спец символы.
 ```bash
-BSSID_CONNECT=('11:AA:11:AA:11:AA' '11:AA:11:AA:11:AA' '11:AA:11:AA:11:AA')
+BSSID_CONNECT=('11:AA:11:AA:11:A1' '11:AA:11:AA:11:A2' '11:AA:11:AA:11:A3')
+SSID_CONNECT=('WIFI_name_1' 'WIFI-name_2')
 ```
 3. Перезапустить NetworkManager:
 ```bash
