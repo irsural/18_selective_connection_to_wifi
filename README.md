@@ -29,4 +29,4 @@ SSID_CONNECT=('WIFI_name_1' 'WIFI-name_2')
 ```bash
 sudo systemctl restart NetworkManager
 ```
-После этого ваш компьютер сможет подключаться только к тем Wi-Fi сетям, BSSID которых указаны в `BSSID_CONNECT`.
+После этого ваш компьютер сможет подключаться только к тем Wi-Fi сетям, BSSID и SSID которых указаны в `BSSID_CONNECT` и `SSID_CONNECT`.
