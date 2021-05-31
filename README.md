@@ -20,10 +20,10 @@ sudo chmod 755 /etc/NetworkManager/dispatcher.d/wlan_auto_toggle.sh
 Оформление `BSSID_CONNECT`:  
   * только CapsLock; 
   * BSSID указываются через пробел;
-  * SSID не должен содержать пробелы и другие спец символы.
+  * SSID может содержать пробелы, но не другие спец символы.
 ```bash
 BSSID_CONNECT=('11:AA:11:AA:11:A1' '11:AA:11:AA:11:A2' '11:AA:11:AA:11:A3')
-SSID_CONNECT=('WIFI_name_1' 'WIFI-name_2')
+SSID_CONNECT=('WIFI_name_1' 'WIFI-name_2' 'WIFI name 3')
 ```
 3. Перезапустить NetworkManager:
 ```bash
