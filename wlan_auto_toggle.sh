@@ -16,6 +16,20 @@ SSID_CONNECT=('WIFI_name_1' 'WIFI-name_2' 'WIFI name 3')
 interface=$1
 status=$2
 
+
+object_index () {
+  local index_name=$1
+  shift
+  local -a value_array=("$@")
+  local i
+  # -A means associative array, -g means create a global variable:
+  declare -g -A ${index_name}
+  for i in "${!value_array[@]}"; do
+    eval ${index_name}["${value_array[$i]}"]=$i
+  done
+}
+
+
 disconnect_wifi(){
     bssid_ssid_active=$(nmcli -f ACTIVE,BSSID,SSID dev wifi | grep "yes" | awk '{ for(i=2; i<=NF; ++i) printf $i""FS; print "" }' | head -n1)
     bssid_ssid=( $(printf "$bssid_ssid_active") )
