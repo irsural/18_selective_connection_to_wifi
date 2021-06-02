@@ -16,11 +16,28 @@ SSID_CONNECT=('WIFI_name_1' 'WIFI-name_2' 'WIFI name 3')
 interface=$1
 status=$2
 
+
+object_index () {
+  local index_name=$1
+  shift
+  local -a value_array=("$@")
+  local i
+  # -A means associative array, -g means create a global variable:
+  declare -g -A ${index_name}
+  for i in "${!value_array[@]}"; do
+    eval ${index_name}["${value_array[$i]}"]=$i
+  done
+}
+
+
 disconnect_wifi(){
     bssid_ssid_active=$(nmcli -f ACTIVE,BSSID,SSID dev wifi | grep "yes" | awk '{ for(i=2; i<=NF; ++i) printf $i""FS; print "" }' | head -n1)
     bssid_ssid=( $(printf "$bssid_ssid_active") )
-    
-    if [[ " ${BSSID_CONNECT[*]} " == *"${bssid_ssid[0]}"* && " ${SSID_CONNECT[*]} " == *" ${bssid_ssid[*]:1} "* ]];then
+
+    object_index search_bssid_connect "${BSSID_CONNECT[@]}"
+    object_index search_ssid_connect "${SSID_CONNECT[@]}"
+
+    if [[ "${search_bssid_connect[${bssid_ssid[0]}]}" && "${search_ssid_connect[${bssid_ssid[*]:1}]}" ]];then
       echo "Подключено" > /dev/null
     else
         nmcli connection down "$CONNECTION_UUID"
